@@ -1,0 +1,1 @@
+- This project is a Node.js RESTful CRUD API implementation, designed to facilitate Create, Read, Update, and Delete operations on resources.
