@@ -7,7 +7,7 @@ try {
     const res=await MobileRepo.create(data);
     return res;
 } catch (error) {
-    //console.log(error);
+   // console.log(error);
     if(error.name=="MongoServerError"){
        // console.log(typeof(error.message));
        // throw new Apperror(error.message,StatusCode.BAD_REQUEST);
@@ -36,6 +36,54 @@ try {
 }
 }
 
+async function getMobile(id){
+    try {
+        const res=await MobileRepo.get(id);
+        return res;
+    } catch (error) {
+        if(error instanceof Apperror){
+            throw error;
+        }
+        throw new Apperror("server side probelem",StatusCode.INTERNAL_SERVER_ERROR);
+    }
+}
+async function getMobiles(){
+    try {
+        const res=await MobileRepo.getAll();
+        return res;
+    } catch (error) {
+        throw new Apperror("server side probelem",StatusCode.INTERNAL_SERVER_ERROR);
+    }
+}
+async function destroyMobile(id){
+    try {
+        const res=await MobileRepo.destroy(id);
+        return res;
+    } catch (error) {
+       // console.log(error);
+       if(error instanceof Apperror){
+        throw error;
+    }
+       throw new Apperror("server side probelem",StatusCode.INTERNAL_SERVER_ERROR);
+    }
+}
+async function updateMobile(id,data){
+    try {
+        const res=await MobileRepo.update(id,data);
+        return res;
+    } catch (error) {
+        if(error instanceof Apperror){
+            throw error;
+        }
+        //console.log(error);
+        throw new Apperror("server side probelem",StatusCode.INTERNAL_SERVER_ERROR);
+    }
+}
+
 module.exports={
    createMobile,
+   getMobile,
+   getMobiles,
+   destroyMobile,
+   updateMobile
 }

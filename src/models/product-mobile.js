@@ -26,10 +26,11 @@ const productSchema = new Schema({
             resolution: String,
             displayType: String,
 
-        }
-
-    }
-});
+        },
+        
+    },
+    
+},{ timestamps: true });
  const Mobile=new mongoose.model('Mobile',productSchema);
  module.exports=Mobile;
 
